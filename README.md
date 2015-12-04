@@ -19,8 +19,8 @@
 
 ## Getting Started
 
-1. ```$ git clone https://github.com/sf-wdi-22-23/seed-mean-html.git```
-2. ```$ cd seed-mean-html```   
+1. ```$ git clone https://github.com/sf-wdi-22-23/mean-review.git```
+2. ```$ cd mean-review```
 3. ```$ npm install```   
 2. ```$ npm install -g bower```   
 3. ```$ bower install```   
@@ -32,7 +32,7 @@
 ## File structure
 
 ```
-|seed-mean-html
+|mean-review
  | models - database models
  | node_modules - node modules (added by npm)
  | public - angular assets and angular app
