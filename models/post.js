@@ -6,16 +6,10 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
-    created_at: { 
-      type: Date, 
-      default: Date.now() 
-    },
+    created_at: { type: Date, default: Date.now() },
     updated_at: { type: Date },
-    content: { 
-      type: String, 
-      required: true, 
-      trim: true 
-    }
+    title: { type: String, required: true, trim: true },
+    content: { type: String, required: true, trim: true }
 });
 
 // MIDDLEWARE

@@ -1,15 +1,34 @@
+<div ng-controller="MusicSearch">
+  <h3>Spotify Search</h3>
+  <form ng-submit="searchMusic()">
+    <div class="form-group">
+      <input class="form-control" type="text" ng-model="term"/>      
+    </div>
+    <div class="text-right">
+      <button class='btn btn-primary' type="submit">Search</button>
+    </div>
+  </form>
+  <div ng-repeat="track in tracks">
+    {{track.name}} - {{track.album.name}}
+  </div>
+</div>
+
+
+
 <h3 class='pull-left'>Posts</h3>
 <form ng-submit="createPost()">
   <div class='form-group'>
-    <textarea class='form-control' ng-model="post.content"></textarea>
+    <input class='form-control' type="text" ng-model="post.title" required autofocus>
+    <textarea class='form-control' ng-model="post.content" required ></textarea>
   </div>
   <button type="submit" class='btn btn-default'>Save</button>
 </form>
 <hr>
 <ul class='list-group'>
   <li ng-repeat="post in posts" class='list-group-item'>
-    {{post.body}}
-    <a href="#" class='pull-right' ng-click="deletePost(post)">
+    <h4>{{post.title}}</h4>
+    <p>{{post.content}}</p>
+    <a href="#" class='pull-right' ng-click="deletePost(post, $index)">
       <i class='icon ion-close-circled'></i>
     </a>
   </li>

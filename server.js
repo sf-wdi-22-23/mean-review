@@ -11,6 +11,8 @@ var path = require('path');   // built-in module for dealing with file paths
 var bodyParser = require('body-parser');  // parse form data into req.body
 var mongoose = require('mongoose');   // object document mapper
 
+var request = require('request');
+
 // configure bodyparser
 app.use(bodyParser.urlencoded({
   extended: true
@@ -18,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // connect to database
-var dbName = 'seed-mean-html';
+var dbName = 'mean-review';
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/' + dbName);    
 
 // serve public folder as static assets on the root route
@@ -51,8 +53,22 @@ app.get('/templates/:name', routes.templates);
 
 // API ROUTES
 // post routes
-app.use('/api/posts', routes.postRouter);
+require('./routes/posts')(app);
 
+app.post('/api/music/search', function(req,res) {
+  console.log(req.body)
+  var url = "https://api.spotify.com/v1/search?q=" + req.body.term + "&type=track"
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body) // Show the HTML for the Google homepage. 
+    }
+    res.send(body);
+  })
+})
+
+app.get('/api/dudes', function(req,res) {
+  console.log("awesome sauce")
+})
 
 // ALL OTHER ROUTES (ANGULAR HANDLES)
 // redirect all other paths to index
